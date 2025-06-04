@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+}
+
+group = 'ru.bay.quotation_book'
+version = '1.0.0'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Spring Context
+    implementation "org.springframework:spring-context:${project.findProperty("spring.version")}"
+    // Jakarta
+    implementation "jakarta.annotation:jakarta.annotation-api:${project.findProperty("jakarta.version")}"
+    // Jackson
+    implementation "com.fasterxml.jackson.core:jackson-databind:${project.findProperty("jackson.version")}"
+    implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${project.findProperty("jackson.version")}"
+    // Lombok
+    compileOnly "org.projectlombok:lombok:${project.findProperty("lombok.version")}"
+    annotationProcessor "org.projectlombok:lombok:${project.findProperty("lombok.version")}"
+    // Mapstruct
+    implementation "org.mapstruct:mapstruct:${project.findProperty("mapstruct.version")}"
+    implementation "org.mapstruct:mapstruct-processor:${project.findProperty("mapstruct.version")}"
+    // Test
+    testImplementation platform("org.junit:junit-bom:${project.findProperty("junit.version")}")
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params'
+    testImplementation platform("org.mockito:mockito-bom:${project.findProperty("mockito.version")}")
+    testImplementation 'org.mockito:mockito-core'
+    testImplementation 'org.mockito:mockito-junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}

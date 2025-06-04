@@ -1,0 +1,17 @@
+[ {
+  "id" : 1,
+  "name" : "Wisdom",
+  "status" : "ACTIVE"
+}, {
+  "id" : 2,
+  "name" : "Inspiration",
+  "status" : "ACTIVE"
+}, {
+  "id" : 3,
+  "name" : "Philosophy",
+  "status" : "ACTIVE"
+}, {
+  "id" : 4,
+  "name" : "GreatMinds",
+  "status" : "ACTIVE"
+} ]
