@@ -1,14 +1,24 @@
 plugins {
-    id 'java'
+    id 'application'
+    alias(libs.plugins.java.fx.plugin)
 }
 
 group = 'ru.bay.quotation_book'
-version = '1.0.0'
+version = libs.versions.quotation.book.get()
+
+application {
+    mainClass = 'ru.bay.quotation_book.QuotationBook'
+}
 
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
     }
+}
+
+javafx {
+    version = '21'
+    modules = ['javafx.controls']
 }
 
 configurations {
@@ -17,31 +27,18 @@ configurations {
     }
 }
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
-    // Spring Context
-    implementation "org.springframework:spring-context:${project.findProperty("spring.version")}"
-    // Jakarta
-    implementation "jakarta.annotation:jakarta.annotation-api:${project.findProperty("jakarta.version")}"
-    // Jackson
-    implementation "com.fasterxml.jackson.core:jackson-databind:${project.findProperty("jackson.version")}"
-    implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${project.findProperty("jackson.version")}"
-    // Lombok
-    compileOnly "org.projectlombok:lombok:${project.findProperty("lombok.version")}"
-    annotationProcessor "org.projectlombok:lombok:${project.findProperty("lombok.version")}"
-    // Mapstruct
-    implementation "org.mapstruct:mapstruct:${project.findProperty("mapstruct.version")}"
-    implementation "org.mapstruct:mapstruct-processor:${project.findProperty("mapstruct.version")}"
-    // Test
-    testImplementation platform("org.junit:junit-bom:${project.findProperty("junit.version")}")
-    testImplementation 'org.junit.jupiter:junit-jupiter'
-    testImplementation 'org.junit.jupiter:junit-jupiter-params'
-    testImplementation platform("org.mockito:mockito-bom:${project.findProperty("mockito.version")}")
-    testImplementation 'org.mockito:mockito-core'
-    testImplementation 'org.mockito:mockito-junit-jupiter'
+    implementation libs.spring.context
+    implementation libs.jakarta.annotation.api
+    implementation libs.bundles.jackson
+    compileOnly libs.project.lombok
+    implementation libs.mapstruct
+    annotationProcessor libs.project.lombok
+    annotationProcessor libs.mapstruct.processor
+    testImplementation platform(libs.junit.bom)
+    testImplementation libs.bundles.junit
+    testImplementation platform(libs.mockito.bom)
+    testImplementation libs.bundles.mockito
 }
 
 test {
