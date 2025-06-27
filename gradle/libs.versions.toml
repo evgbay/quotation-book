@@ -1,0 +1,49 @@
+[versions]
+quotation-book = "1.4.1"
+java-fx-plugin = "0.1.0"
+spring = "6.2.6"
+jakarta = "3.0.0"
+jackson = "2.19.0"
+lombok = "1.18.38"
+mapstruct = "1.6.3"
+junit = "5.12.2"
+mockito = "5.17.0"
+
+[plugins]
+java-fx-plugin = { id = "org.openjfx.javafxplugin", version.ref = "java-fx-plugin" }
+
+[libraries]
+# Spring Context
+spring-context = { module = "org.springframework:spring-context", version.ref = "spring" }
+# Jakarta
+jakarta-annotation-api = { module = "jakarta.annotation:jakarta.annotation-api", version.ref = "jakarta" }
+# Jackson
+jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
+jackson-dataformat-yaml = { module = "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml", version.ref = "jackson" }
+# Lombok
+project-lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
+# Mapstruct
+mapstruct = { module = "org.mapstruct:mapstruct", version.ref = "mapstruct" }
+mapstruct-processor = { module = "org.mapstruct:mapstruct-processor", version.ref = "mapstruct" }
+# Junit
+junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
+junit-jupiter-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit" }
+# Mockito
+mockito-bom = { module = "org.mockito:mockito-bom", version.ref = "mockito" }
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
+mockito-junit-jupiter = { module = "org.mockito:mockito-junit-jupiter", version.ref = "mockito" }
+
+[bundles]
+jackson = [
+    "jackson-databind",
+    "jackson-dataformat-yaml"
+]
+junit = [
+    "junit-jupiter",
+    "junit-jupiter-params"
+]
+mockito = [
+    "mockito-core",
+    "mockito-junit-jupiter"
+]
