@@ -1,7 +1,10 @@
 package ru.bay.quotation_book.author;
 
-import org.springframework.stereotype.Controller;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
-@Controller
+@Component
+@RequiredArgsConstructor
 public class AuthorController {
+    private final AuthorRepository authorRepository;
 }

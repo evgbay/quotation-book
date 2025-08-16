@@ -2,18 +2,20 @@ package ru.bay.quotation_book.tag;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.MappingConstants;
 import org.mapstruct.MappingTarget;
+import org.mapstruct.factory.Mappers;
 import ru.bay.quotation_book.core.model.TagDto;
+import ru.bay.quotation_book.core.model.UpdatedTag;
 
-@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
-public interface TagMapper {
+@Mapper
+interface TagMapper {
+    TagMapper INSTANCE = Mappers.getMapper(TagMapper.class);
+
     @Mapping(target = "tagName", source = "name")
-    TagDto toDto(Tag tag);
+    TagDto toResponseDto(Tag tag);
 
     @Mapping(target = "name", source = "tagName")
-    @Mapping(target = "id", ignore = true)
-    Tag fromDto(TagDto tagDto);
+    Tag fromDto(UpdatedTag updatedTag);
 
     void merge(@MappingTarget Tag target, Tag source);
 }

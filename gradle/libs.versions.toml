@@ -3,7 +3,7 @@ quotation-book = "1.4.1"
 java-fx-plugin = "0.1.0"
 spring = "6.2.6"
 jakarta = "3.0.0"
-jackson = "2.19.0"
+jackson = "2.19.1"
 lombok = "1.18.38"
 mapstruct = "1.6.3"
 junit = "5.12.2"
@@ -20,6 +20,7 @@ jakarta-annotation-api = { module = "jakarta.annotation:jakarta.annotation-api",
 # Jackson
 jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
 jackson-dataformat-yaml = { module = "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml", version.ref = "jackson" }
+jackson-datatype-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson" }
 # Lombok
 project-lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
 # Mapstruct
@@ -37,7 +38,8 @@ mockito-junit-jupiter = { module = "org.mockito:mockito-junit-jupiter", version.
 [bundles]
 jackson = [
     "jackson-databind",
-    "jackson-dataformat-yaml"
+    "jackson-dataformat-yaml",
+    "jackson-datatype-jsr310"
 ]
 junit = [
     "junit-jupiter",

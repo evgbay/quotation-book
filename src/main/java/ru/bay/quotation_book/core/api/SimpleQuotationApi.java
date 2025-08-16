@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class CommonQuotationApi implements QuotationApi {
+public class SimpleQuotationApi implements QuotationApi {
     private final AuthorController authorController;
     private final QuoteController quoteController;
     private final TagController tagController;

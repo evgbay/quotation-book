@@ -1,4 +1,4 @@
-package ru.bay.quotation_book.tag;
+package ru.bay.quotation_book.quote;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -12,10 +12,10 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 @Repository
 @RequiredArgsConstructor
-class TagRepositoryImpl implements TagRepository {
-    private final TagProperties tagProperties;
+public class QuoteRepositoryImpl implements QuoteRepository {
+    private final QuoteProperties quoteProperties;
     private final ReadWriteLock lock = new ReentrantReadWriteLock();
-    private final Map<Integer, Tag> cache = new HashMap<>();
+    private final Map<Integer, Quote> cache = new HashMap<>();
 
     @Override
     public ReadWriteLock getLock() {
@@ -24,16 +24,16 @@ class TagRepositoryImpl implements TagRepository {
 
     @Override
     public Path getPath() {
-        return Paths.get(tagProperties.path());
+        return Paths.get(quoteProperties.path());
     }
 
     @Override
-    public Class<Tag> getBinderClass() {
-        return Tag.class;
+    public Class<Quote> getBinderClass() {
+        return Quote.class;
     }
 
     @Override
-    public Map<Integer, Tag> getCache() {
+    public Map<Integer, Quote> getCache() {
         return cache;
     }
 }

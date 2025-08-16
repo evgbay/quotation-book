@@ -6,7 +6,7 @@ import ru.bay.quotation_book.core.annotation.Binder;
 
 import java.util.List;
 
-public interface BeanPersistenceRepository<T extends Binder> extends
+public interface BeanPersistenceRepository<T extends Binder<T>> extends
         AbstractRepository<T>,
         InitializingBean,
         DisposableBean {

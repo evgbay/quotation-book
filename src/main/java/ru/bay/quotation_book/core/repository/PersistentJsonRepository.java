@@ -2,6 +2,7 @@ package ru.bay.quotation_book.core.repository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -12,7 +13,10 @@ import java.util.List;
 import java.util.concurrent.locks.ReadWriteLock;
 
 interface PersistentJsonRepository<T> extends GenericRepository<T, Integer> {
-    ObjectMapper MAPPER = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
+    ObjectMapper MAPPER = new ObjectMapper()
+            .registerModule(new JavaTimeModule())
+            .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+            .enable(SerializationFeature.INDENT_OUTPUT);
 
     ReadWriteLock getLock();
 

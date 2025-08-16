@@ -1,14 +1,13 @@
 package ru.bay.quotation_book.core.repository;
 
 import ru.bay.quotation_book.core.annotation.Binder;
-import ru.bay.quotation_book.tag.TagMapper;
 
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-interface AbstractRepository<T extends Binder> extends PersistentJsonRepository<T> {
+interface AbstractRepository<T extends Binder<T>> extends PersistentJsonRepository<T> {
 
     Class<T> getBinderClass();
 
@@ -30,14 +29,10 @@ interface AbstractRepository<T extends Binder> extends PersistentJsonRepository<
     }
 
     default T update(T source) {
-        try {
-            T original = getById(source.getId());
-            T instance = original.merge(source); // todo
-            getCache().put(instance.getId(), instance);
-            return instance;
-        } catch (NoSuchElementException ex) {
-            return save(source);
-        }
+        T original = getById(source.getId());
+        original.merge(source);
+        getCache().put(original.getId(), original);
+        return original;
     }
 
     default void deleteById(Integer id) {

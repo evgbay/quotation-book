@@ -1,4 +1,4 @@
-package ru.bay.quotation_book.tag;
+package ru.bay.quotation_book.author;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -11,30 +11,26 @@ import ru.bay.quotation_book.core.annotation.Binder;
 import ru.bay.quotation_book.core.model.Status;
 
 @Getter
-@Setter
 @ToString(exclude = {"id"})
 @EqualsAndHashCode(exclude = {"status"})
 @RequiredArgsConstructor
-class Tag implements Binder<Tag> {
+public class Author implements Binder<Author> {
     private final int id;
-    private final String name;
+    private final String firstName;
+    private final String lastName;
+    @Setter
     private Status status;
 
     @JsonCreator
-    public static Tag fromJson(
+    public static Author fromJson(
             @JsonProperty("id") int id,
-            @JsonProperty("name") String name,
+            @JsonProperty("firstName") String firstName,
+            @JsonProperty("lastName") String lastName,
             @JsonProperty("status") Status status
     ) {
-        var tag = new Tag(id, name);
-        tag.setStatus(status);
-        return tag;
-    }
-
-    public static Tag fromRequest(int id, String name) {
-        var tag = new Tag(id, name);
-        tag.setStatus(Status.ACTIVE);
-        return tag;
+        var author = new Author(id, firstName, lastName);
+        author.setStatus(status);
+        return author;
     }
 
     @Override
@@ -43,7 +39,7 @@ class Tag implements Binder<Tag> {
     }
 
     @Override
-    public void merge(Tag source) {
-        TagMapper.INSTANCE.merge(this, source);
+    public void merge(Author source) {
+        //todo
     }
 }

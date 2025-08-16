@@ -1,0 +1,9 @@
+[ {
+  "id" : 1,
+  "content" : "Even the smallest step forward is still progress.",
+  "authorId" : 1,
+  "tagIds" : [ 1, 2, 3 ],
+  "createdAt" : "2025-06-27T12:00:00.123Z",
+  "updatedAt" : null,
+  "status" : "ACTIVE"
+} ]
