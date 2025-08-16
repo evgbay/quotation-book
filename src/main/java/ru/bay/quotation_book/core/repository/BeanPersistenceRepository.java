@@ -2,21 +2,22 @@ package ru.bay.quotation_book.core.repository;
 
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
-import ru.bay.quotation_book.core.annotation.Binder;
+import ru.bay.quotation_book.core.annotation.Entity;
 
 import java.util.List;
 
-public interface BeanPersistenceRepository<T extends Binder<T>> extends
+public interface BeanPersistenceRepository<T extends Entity<T>> extends
         AbstractRepository<T>,
         InitializingBean,
         DisposableBean {
+    Class<T> getEntityType();
 
-    default void afterPropertiesSet() throws Exception {
-        List<T> listOfInstance = load(getBinderClass());
-        listOfInstance.forEach(instance -> getCache().putIfAbsent(instance.getId(), instance));
+    default void afterPropertiesSet() {
+        List<T> listOfInstance = load(getEntityType());
+        listOfInstance.forEach(instance -> getCache().putIfAbsent(instance.id(), instance));
     }
 
-    default void destroy() throws Exception {
+    default void destroy() {
         export();
     }
 

@@ -1,49 +1,25 @@
 package ru.bay.quotation_book.tag;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-import ru.bay.quotation_book.core.annotation.Binder;
+import lombok.Builder;
+import lombok.With;
+import lombok.extern.jackson.Jacksonized;
+import ru.bay.quotation_book.core.annotation.Entity;
 import ru.bay.quotation_book.core.model.Status;
 
-@Getter
-@Setter
-@ToString(exclude = {"id"})
-@EqualsAndHashCode(exclude = {"status"})
-@RequiredArgsConstructor
-class Tag implements Binder<Tag> {
-    private final int id;
-    private final String name;
-    private Status status;
-
-    @JsonCreator
-    public static Tag fromJson(
-            @JsonProperty("id") int id,
-            @JsonProperty("name") String name,
-            @JsonProperty("status") Status status
-    ) {
-        var tag = new Tag(id, name);
-        tag.setStatus(status);
-        return tag;
-    }
-
-    public static Tag fromRequest(int id, String name) {
-        var tag = new Tag(id, name);
-        tag.setStatus(Status.ACTIVE);
-        return tag;
+@Builder
+@Jacksonized
+public record Tag(
+        int id,
+        String name,
+        @With Status status
+) implements Entity<Tag> {
+    @Override
+    public Tag deactivate() {
+        return withStatus(Status.INACTIVE);
     }
 
     @Override
-    public void deactivate() {
-        setStatus(Status.INACTIVE);
-    }
-
-    @Override
-    public void merge(Tag source) {
-        TagMapper.INSTANCE.merge(this, source);
+    public Tag merge(Tag source) {
+        return withStatus(source.status());
     }
 }

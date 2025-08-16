@@ -1,11 +1,12 @@
 [versions]
-quotation-book = "1.4.1"
+quotation-book = "1.5.0"
 java-fx-plugin = "0.1.0"
 spring = "6.2.6"
 jakarta = "3.0.0"
 jackson = "2.19.1"
 lombok = "1.18.38"
 mapstruct = "1.6.3"
+commons-lang3 = "3.18.0"
 junit = "5.12.2"
 mockito = "5.17.0"
 
@@ -26,6 +27,8 @@ project-lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
 # Mapstruct
 mapstruct = { module = "org.mapstruct:mapstruct", version.ref = "mapstruct" }
 mapstruct-processor = { module = "org.mapstruct:mapstruct-processor", version.ref = "mapstruct" }
+# Apache
+commons-lang3 = { module = "org.apache.commons:commons-lang3", version.ref = "commons-lang3" }
 # Junit
 junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }

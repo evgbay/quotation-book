@@ -16,11 +16,6 @@ java {
     }
 }
 
-javafx {
-    version = '21'
-    modules = ['javafx.controls']
-}
-
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
@@ -33,6 +28,7 @@ dependencies {
     implementation libs.bundles.jackson
     compileOnly libs.project.lombok
     implementation libs.mapstruct
+    implementation libs.commons.lang3
     annotationProcessor libs.project.lombok
     annotationProcessor libs.mapstruct.processor
     testImplementation platform(libs.junit.bom)

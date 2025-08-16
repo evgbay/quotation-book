@@ -6,13 +6,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import ru.bay.quotation_book.core.model.Constant;
 
 @Configuration
-@PropertySource("classpath:" + Constant.PROPERTIES)
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class PropertyConfig {
-
+@PropertySource("classpath:application.properties")
+@NoArgsConstructor(access = AccessLevel.PACKAGE)
+public class PropertyConfiguration {
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();

@@ -12,7 +12,7 @@ import java.nio.file.StandardOpenOption;
 import java.util.List;
 import java.util.concurrent.locks.ReadWriteLock;
 
-interface PersistentJsonRepository<T> extends GenericRepository<T, Integer> {
+interface PersistentJsonRepository<T> extends GenericRepository<T> {
     ObjectMapper MAPPER = new ObjectMapper()
             .registerModule(new JavaTimeModule())
             .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
