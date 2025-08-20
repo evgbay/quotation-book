@@ -37,9 +37,9 @@ public class QuoteController {
         final var random = new SecureRandom(seed);
         try {
             var quote = quoteRepository.getById(random.nextInt(1, 3));
-            var author = authorController.getAuthorById(quote.id());
-            var activeTagNames = tagController.getActiveTagNames(quote.tagIds());
-            var quoteDto = new QuoteDto(quote.content(), author.fullName(), activeTagNames);
+            var author = authorController.getAuthorForQuote(quote);
+            var activeTagNames = tagController.getActiveTagsForQuote(quote);
+            var quoteDto = QuoteDto.create(quote, author, activeTagNames);
             return quoteDto.toString();
         } catch (NoSuchElementException e) {
             return e.getMessage();
