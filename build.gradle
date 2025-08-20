@@ -24,7 +24,7 @@ configurations {
 
 dependencies {
     implementation libs.spring.context
-    implementation libs.jakarta.annotation.api
+    implementation libs.bundles.jakarta
     implementation libs.bundles.jackson
     compileOnly libs.project.lombok
     implementation libs.mapstruct

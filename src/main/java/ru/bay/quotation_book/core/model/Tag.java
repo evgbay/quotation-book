@@ -1,10 +1,9 @@
-package ru.bay.quotation_book.tag;
+package ru.bay.quotation_book.core.model;
 
 import lombok.Builder;
 import lombok.With;
 import lombok.extern.jackson.Jacksonized;
 import ru.bay.quotation_book.core.annotation.Entity;
-import ru.bay.quotation_book.core.model.Status;
 
 @Builder
 @Jacksonized

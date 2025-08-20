@@ -1,8 +1,8 @@
-package ru.bay.quotation_book.tag;
+package ru.bay.quotation_book.author;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-import ru.bay.quotation_book.core.model.Tag;
+import ru.bay.quotation_book.core.model.Author;
 import ru.bay.quotation_book.core.util.TextUtils;
 
 import java.nio.file.Path;
@@ -14,14 +14,14 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 @Repository
 @RequiredArgsConstructor
-class TagRepositoryImpl implements TagRepository {
-    private final Map<Integer, Tag> tags = new HashMap<>();
-    private final ReadWriteLock tagReadWriteLock = new ReentrantReadWriteLock();
-    private final TagProperties tagProperties;
+class AuthorRepositoryImpl implements AuthorRepository {
+    private final Map<Integer, Author> authors = new HashMap<>();
+    private final ReadWriteLock authorReadWriteLock = new ReentrantReadWriteLock();
+    private final AuthorProperties authorProperties;
 
     @Override
-    public Class<Tag> getEntityType() {
-        return Tag.class;
+    public Class<Author> getEntityType() {
+        return Author.class;
     }
 
     @Override
@@ -30,17 +30,17 @@ class TagRepositoryImpl implements TagRepository {
     }
 
     @Override
-    public Map<Integer, Tag> getCache() {
-        return tags;
+    public Map<Integer, Author> getCache() {
+        return authors;
     }
 
     @Override
     public ReadWriteLock getLock() {
-        return tagReadWriteLock;
+        return authorReadWriteLock;
     }
 
     @Override
     public Path getPath() {
-        return Paths.get(tagProperties.path());
+        return Paths.get(authorProperties.path());
     }
 }
