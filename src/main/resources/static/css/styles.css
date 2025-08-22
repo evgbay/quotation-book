@@ -1,0 +1,34 @@
+.fx-root-anchor {
+    -fx-background-color: linear-gradient(
+            to bottom,
+            #2BC0E4,
+            #00A9A5,
+            #00796B
+    );
+}
+
+.fx-child-anchor {
+    -fx-background-color: #f3f6f3;
+    -fx-background-radius: 20;
+}
+
+.fx-text-anchor {
+    -fx-background-color: #d5f4d5;
+    -fx-background-radius: 10;
+}
+
+.fx-text-field {
+    -fx-background-color: #d5f4d5;
+}
+
+.text-field {
+    -fx-text-fill: #A0A0A0;
+}
+
+.text-field, .text-area .content {
+    -fx-background-color: #d5f4d5;
+}
+
+.button {
+    -fx-background-color: #f3f6f3;
+}
