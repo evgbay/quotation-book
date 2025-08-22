@@ -1,48 +1,42 @@
 package ru.bay.quotation_book.core.repository;
 
-import ru.bay.quotation_book.core.annotation.Binder;
-import ru.bay.quotation_book.tag.TagMapper;
+import ru.bay.quotation_book.core.annotation.Entity;
 
-import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 
-interface AbstractRepository<T extends Binder> extends PersistentJsonRepository<T> {
-
-    Class<T> getBinderClass();
+interface AbstractRepository<T extends Entity<T>> extends PersistentJsonRepository<T> {
+    String getExceptionMessage(Integer id);
 
     Map<Integer, T> getCache();
 
     default T getById(Integer id) {
-        return Optional.ofNullable(getCache().get(id))
-                .orElseThrow(() -> new NoSuchElementException(getBinderClass().getSimpleName() + " with ID " + id + " not found"));
+        return Optional.ofNullable(getCache().get(id)).orElseThrow(
+                () -> new NoSuchElementException(getExceptionMessage(id)));
     }
 
     default List<T> getAll() {
-        return getCache().values().stream()
-                .toList();
+        return getCache().values().stream().toList();
     }
 
     default T save(T instance) {
-        getCache().put(instance.getId(), instance);
-        return instance;
+        return getCache().put(instance.id(), instance);
     }
 
     default T update(T source) {
-        try {
-            T original = getById(source.getId());
-            T instance = original.merge(source); // todo
-            getCache().put(instance.getId(), instance);
-            return instance;
-        } catch (NoSuchElementException ex) {
-            return save(source);
-        }
+        return getCache().compute(source.id(), (key, instance) -> {
+            if (Objects.isNull(instance)) {
+                throw new NoSuchElementException(getExceptionMessage(source.id()));
+            }
+            return instance.merge(source);
+        });
     }
 
     default void deleteById(Integer id) {
-        T instance = getById(id);
-        instance.deactivate();
-        getCache().put(instance.getId(), instance);
+        getCache().compute(id, (key, instance) -> {
+            if (Objects.isNull(instance)) {
+                throw new NoSuchElementException(getExceptionMessage(id));
+            }
+            return instance.deactivate();
+        });
     }
 }

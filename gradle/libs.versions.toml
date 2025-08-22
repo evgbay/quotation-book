@@ -1,0 +1,60 @@
+[versions]
+quotation-book = "1.5.0"
+java-fx-plugin = "0.1.0"
+spring = "6.2.10"
+jakarta-annotation = "3.0.0"
+jakarta-validation = "3.1.1"
+jackson = "2.19.1"
+lombok = "1.18.38"
+mapstruct = "1.6.3"
+commons-lang3 = "3.18.0"
+junit = "5.12.2"
+mockito = "5.17.0"
+
+[plugins]
+java-fx-plugin = { id = "org.openjfx.javafxplugin", version.ref = "java-fx-plugin" }
+
+[libraries]
+# Spring Context
+spring-context = { module = "org.springframework:spring-context", version.ref = "spring" }
+# Jakarta
+jakarta-annotation = { module = "jakarta.annotation:jakarta.annotation-api", version.ref = "jakarta-annotation" }
+jakarta-validation = { module = "jakarta.validation:jakarta.validation-api", version.ref = "jakarta-validation" }
+# Jackson
+jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
+jackson-dataformat-yaml = { module = "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml", version.ref = "jackson" }
+jackson-datatype-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson" }
+# Lombok
+project-lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
+# Mapstruct
+mapstruct = { module = "org.mapstruct:mapstruct", version.ref = "mapstruct" }
+mapstruct-processor = { module = "org.mapstruct:mapstruct-processor", version.ref = "mapstruct" }
+# Apache
+commons-lang3 = { module = "org.apache.commons:commons-lang3", version.ref = "commons-lang3" }
+# Junit
+junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
+junit-jupiter-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit" }
+# Mockito
+mockito-bom = { module = "org.mockito:mockito-bom", version.ref = "mockito" }
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
+mockito-junit-jupiter = { module = "org.mockito:mockito-junit-jupiter", version.ref = "mockito" }
+
+[bundles]
+jakarta = [
+    "jakarta-annotation",
+    "jakarta-validation"
+]
+jackson = [
+    "jackson-databind",
+    "jackson-dataformat-yaml",
+    "jackson-datatype-jsr310"
+]
+junit = [
+    "junit-jupiter",
+    "junit-jupiter-params"
+]
+mockito = [
+    "mockito-core",
+    "mockito-junit-jupiter"
+]

@@ -1,4 +1,4 @@
-package ru.bay.quotation_book.tag;
+package ru.bay.quotation_book.author;
 
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Value;
@@ -7,5 +7,5 @@ import org.springframework.validation.annotation.Validated;
 
 @Component
 @Validated
-record TagProperties(@Value("${app.json.path.tag}") @NotNull String path) {
+record AuthorProperties(@Value("${app.json.path.author}") @NotNull String path) {
 }

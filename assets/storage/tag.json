@@ -9,7 +9,7 @@
 }, {
   "id" : 3,
   "name" : "Philosophy",
-  "status" : "ACTIVE"
+  "status" : "INACTIVE"
 }, {
   "id" : 4,
   "name" : "GreatMinds",

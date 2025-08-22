@@ -2,9 +2,8 @@ package ru.bay.quotation_book.core.repository;
 
 import java.util.List;
 
-@SuppressWarnings("java:S119")
-interface GenericRepository<T, ID> {
-    T getById(ID id);
+interface GenericRepository<T> {
+    T getById(Integer id);
 
     List<T> getAll();
 
@@ -12,5 +11,5 @@ interface GenericRepository<T, ID> {
 
     T update(T t);
 
-    void deleteById(ID id);
+    void deleteById(Integer id);
 }

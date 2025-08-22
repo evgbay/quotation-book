@@ -1,0 +1,1 @@
+> ### *To avoid registering JavaFX modules, use the liberica-full version of JDK from Bellsoft.*
