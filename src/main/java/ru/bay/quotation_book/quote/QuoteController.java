@@ -7,13 +7,15 @@ import javafx.scene.control.TextField;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import ru.bay.quotation_book.author.AuthorController;
+import ru.bay.quotation_book.core.model.Quote;
+import ru.bay.quotation_book.core.model.QuoteStatus;
 import ru.bay.quotation_book.core.model.dto.ResponseQuote;
 import ru.bay.quotation_book.core.util.TextUtils;
 import ru.bay.quotation_book.tag.TagController;
 
 import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
-import java.util.NoSuchElementException;
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -38,29 +40,25 @@ public class QuoteController {
     @FXML
     public void initialize() {
         randomQuoteButton.setOnAction(event -> {
-            try {
-                ResponseQuote responseQuote = randomQuote();
-                quoteAuthor.setText(responseQuote.author());
-                quoteContent.setWrapText(true);
-                quoteContent.setText(responseQuote.content());
-                quoteTags.setText(TextUtils.join(responseQuote.tags()));
-            } catch (NoSuchElementException ex) {
-                quoteAuthor.setText(null);
-                quoteContent.setText(ex.getMessage());
-                quoteTags.setText(null);
-            }
+            var responseQuote = randomQuote();
+            quoteAuthor.setText(responseQuote.author());
+            quoteContent.setWrapText(true);
+            quoteContent.setText(responseQuote.content());
+            quoteTags.setText(TextUtils.join(responseQuote.tags()));
         });
     }
-    // todo
-    // rework initialize method!
-    // rework Quote, Author status - inactive case
+
     public ResponseQuote randomQuote() {
-        var quotes = quoteRepository.getAll();
+        var quotes = getActiveQuotes();
         var quote = quotes.get(RND.nextInt(quotes.size()));
-        // quote status?
         var author = authorController.getAuthorForQuote(quote);
-        // author status
         var activeTagNames = tagController.getActiveTagsForQuote(quote);
-        return ResponseQuote.create(quote, author, activeTagNames);
+        return ResponseQuote.create(author, quote, activeTagNames);
+    }
+
+    public List<Quote> getActiveQuotes() {
+        return quoteRepository.getAll().stream()
+                .filter(quote -> quote.status().equals(QuoteStatus.ACTIVE))
+                .toList();
     }
 }
