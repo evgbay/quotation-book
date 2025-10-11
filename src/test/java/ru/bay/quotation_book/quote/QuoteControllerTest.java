@@ -32,9 +32,14 @@ class QuoteControllerTest {
 
     @Test
     void shouldReturnRandomQuote() {
-        var expectedResponse = new ResponseQuote(Const.FULL_NAME, Const.QUOTE_CONTENT, List.of(Const.TAG_NAME));
+        var expectedResponse = new ResponseQuote(
+                Const.FULL_NAME,
+                Const.QUOTE_CONTENT,
+                List.of(Const.TAG_NAME)
+        );
         var quote = Give.quote().defaultQuote();
         var author = Give.author().defaultAuthor();
+
         when(quoteRepository.getAll())
                 .thenReturn(List.of(quote));
         when(authorController.getAuthorForQuote(any(Quote.class)))
@@ -55,6 +60,7 @@ class QuoteControllerTest {
         var inactiveQuote = Give.quote()
                 .withStatus(QuoteStatus.INACTIVE)
                 .build();
+
         when(quoteRepository.getAll())
                 .thenReturn(List.of(activeQuote, inactiveQuote));
 

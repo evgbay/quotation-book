@@ -27,7 +27,8 @@ public class QuotationBook extends Application {
         );
         loader.setControllerFactory(context::getBean);
         var scene = new Scene(loader.load());
-        var stylesExternalForm = Objects.requireNonNull(getClass().getClassLoader().getResource("static/css/styles.css"))
+        var stylesExternalForm = Objects.requireNonNull(
+                        getClass().getClassLoader().getResource("static/css/styles.css"))
                 .toExternalForm();
         scene.getStylesheets().add(stylesExternalForm);
         setStage(stage, scene);

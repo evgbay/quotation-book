@@ -1,7 +1,8 @@
-package ru.bay.quotation_book.data;
+package ru.bay.quotation_book.data.builder;
 
 import ru.bay.quotation_book.core.model.Author;
 import ru.bay.quotation_book.core.model.Status;
+import ru.bay.quotation_book.data.Const;
 
 public final class AuthorBuilder {
     private int id;

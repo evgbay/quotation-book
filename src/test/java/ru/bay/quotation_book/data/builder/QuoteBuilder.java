@@ -1,7 +1,8 @@
-package ru.bay.quotation_book.data;
+package ru.bay.quotation_book.data.builder;
 
 import ru.bay.quotation_book.core.model.Quote;
 import ru.bay.quotation_book.core.model.QuoteStatus;
+import ru.bay.quotation_book.data.Const;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -39,11 +40,6 @@ public final class QuoteBuilder {
 
     public QuoteBuilder withCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
-        return this;
-    }
-
-    public QuoteBuilder withUpdatedAt(Instant updatedAt) {
-        this.updatedAt = updatedAt;
         return this;
     }
 
