@@ -26,17 +26,15 @@ dependencies {
     implementation libs.spring.context
     implementation libs.bundles.jakarta
     implementation libs.bundles.jackson
-    compileOnly libs.project.lombok
-    implementation libs.mapstruct
     implementation libs.commons.lang3
+    compileOnly libs.project.lombok
     annotationProcessor libs.project.lombok
-    annotationProcessor libs.mapstruct.processor
     testImplementation platform(libs.junit.bom)
     testImplementation libs.bundles.junit
     testImplementation platform(libs.mockito.bom)
     testImplementation libs.bundles.mockito
 }
 
-test {
+tasks.named('test') {
     useJUnitPlatform()
 }

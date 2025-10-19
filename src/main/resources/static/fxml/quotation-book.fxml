@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0"
+            prefWidth="800.0" styleClass="fx-root-anchor" xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.bay.quotation_book.quote.QuoteController">
+    <AnchorPane layoutX="215.0" layoutY="62.0" prefHeight="230.0" prefWidth="370.0" styleClass="fx-child-anchor"
+                AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="215.0"
+                AnchorPane.topAnchor="70.0">
+        <effect>
+            <DropShadow/>
+        </effect>
+        <AnchorPane layoutX="15.0" layoutY="35.0" prefHeight="160.0" prefWidth="340.0" styleClass="fx-text-anchor"
+                    AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0"
+                    AnchorPane.topAnchor="35.0">
+            <TextField fx:id="quoteAuthor" alignment="CENTER_RIGHT" editable="false" layoutX="182.0" layoutY="2.0"
+                       prefHeight="25.0" prefWidth="144.0" styleClass="fx-text-field" AnchorPane.bottomAnchor="130.0"
+                       AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="5.0">
+                <font>
+                    <Font name="%app.quote.minor.font.family" size="12.0"/>
+                </font>
+            </TextField>
+            <TextArea fx:id="quoteContent" editable="false" layoutX="14.0" layoutY="36.0" prefHeight="88.0"
+                      prefWidth="310.0" styleClass="fx-text-field" AnchorPane.bottomAnchor="34.0"
+                      AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="38.0">
+                <font>
+                    <Font name="%app.quote.font.family" size="16.0"/>
+                </font>
+            </TextArea>
+            <TextField fx:id="quoteTags" alignment="CENTER" editable="false" layoutX="15.0" layoutY="130.0"
+                       prefHeight="20.0" prefWidth="310.0" styleClass="fx-text-field" AnchorPane.bottomAnchor="5.0"
+                       AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="130.0">
+                <font>
+                    <Font name="%app.quote.minor.font.family" size="12.0"/>
+                </font>
+            </TextField>
+        </AnchorPane>
+        <Label layoutX="23.0" layoutY="14.0" text="Quotes" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="296.0"
+               AnchorPane.topAnchor="14.0">
+            <font>
+                <Font name="%app.quote.font.family" size="14.0"/>
+            </font>
+        </Label>
+    </AnchorPane>
+    <Button fx:id="randomQuoteButton" alignment="CENTER" layoutX="303.0" layoutY="314.0" mnemonicParsing="false"
+            prefHeight="35.0" prefWidth="200.0" text="Random" textAlignment="CENTER" AnchorPane.bottomAnchor="151.0"
+            AnchorPane.leftAnchor="303.0" AnchorPane.rightAnchor="303.0">
+        <font>
+            <Font name="%app.quote.font.family" size="14.0"/>
+        </font>
+        <effect>
+            <DropShadow/>
+        </effect>
+    </Button>
+</AnchorPane>

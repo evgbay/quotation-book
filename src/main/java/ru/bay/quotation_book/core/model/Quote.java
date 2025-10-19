@@ -5,6 +5,7 @@ import ru.bay.quotation_book.core.annotation.Entity;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Objects;
 
 public record Quote(
         int id,
@@ -26,5 +27,19 @@ public record Quote(
         return withTagIds(source.tagIds())
                 .withUpdatedAt(Instant.now())
                 .withStatus(source.status());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Quote quote)) return false;
+        return id == quote.id
+                && Objects.equals(content, quote.content)
+                && authorId == quote.authorId
+                && Objects.equals(createdAt, quote.createdAt);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, content, authorId, createdAt);
     }
 }

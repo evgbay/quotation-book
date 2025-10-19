@@ -1,0 +1,21 @@
+[ {
+  "id" : 1,
+  "firstName" : "Unknown",
+  "lastName" : null,
+  "status" : "ACTIVE"
+}, {
+  "id" : 2,
+  "firstName" : "Albert",
+  "lastName" : "Einstein",
+  "status" : "ACTIVE"
+}, {
+  "id" : 3,
+  "firstName" : "Nelson",
+  "lastName" : "Mandela",
+  "status" : "ACTIVE"
+}, {
+  "id" : 4,
+  "firstName" : "Oprah",
+  "lastName" : "Winfrey",
+  "status" : "INACTIVE"
+} ]

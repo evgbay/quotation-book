@@ -13,8 +13,8 @@ import java.util.Objects;
 @Jacksonized
 public record Author(
         int id,
-        @With String firstName,
-        @With String lastName,
+        String firstName,
+        String lastName,
         @With Status status
 ) implements Entity<Author> {
     @Override
@@ -24,9 +24,20 @@ public record Author(
 
     @Override
     public Author merge(Author source) {
-        return withFirstName(source.firstName())
-                .withLastName(source.lastName())
-                .withStatus(source.status());
+        return withStatus(source.status());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Author author)) return false;
+        return id == author.id
+                && Objects.equals(firstName, author.firstName)
+                && Objects.equals(lastName, author.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName);
     }
 
     @JsonIgnore
